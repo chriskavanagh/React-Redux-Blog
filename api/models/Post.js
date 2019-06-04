@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+import Joi from "joi-browser";
 
 // Create Schema
 const PostSchema = new Schema({
@@ -36,7 +37,6 @@ function validatePost(movie) {
 }
 
 const Post = mongoose.model("post", PostSchema);
-// exports = Post doesn't work. Error "Post is not a constructor"
 //module.exports = Post;
 exports.Post = Post;
-module.exports.validate = validatePost;
+exports.validate = validatePost;
