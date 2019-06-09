@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchPosts } from "../actions/postActions";
+import PostForm from "./PostForm";
 //import axios from "axios";
 
 class Posts extends Component {
@@ -46,6 +47,7 @@ class Posts extends Component {
     ));
     return (
       <div>
+        <PostForm />
         <h1 className="postHeader">Posts</h1>
         {postItems}
       </div>

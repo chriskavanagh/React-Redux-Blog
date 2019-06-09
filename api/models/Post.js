@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-import Joi from "joi-browser";
+const Joi = require("joi");
 
 // Create Schema
 const PostSchema = new Schema({
@@ -21,7 +21,7 @@ const PostSchema = new Schema({
   }
 });
 
-function validatePost(movie) {
+function validatePost(post) {
   const schema = {
     title: Joi.string()
       .min(5)
@@ -33,10 +33,15 @@ function validatePost(movie) {
       .required()
   };
 
-  return Joi.validate(movie, schema);
+  return Joi.validate(post, schema);
 }
 
 const Post = mongoose.model("post", PostSchema);
 //module.exports = Post;
-exports.Post = Post;
-exports.validate = validatePost;
+//exports.Post = Post;
+//exports.validate = validatePost;
+
+module.exports = {
+  Post: Post,
+  validate: validatePost
+};

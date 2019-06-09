@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const Schema = mongoose.Schema;
 const Joi = require("joi");
+const config = require("config");
 
 // Create Schema
 const UserSchema = new Schema({
@@ -21,21 +22,18 @@ const UserSchema = new Schema({
   register_date: {
     type: Date,
     default: Date.now
-  },
-  date: {
-    type: Date,
-    default: Date.now
   }
 });
 
-userSchema.methods.generateAuthToken = function() {
+UserSchema.methods.generateAuthToken = function() {
   const token = jwt.sign(
     {
       _id: this._id,
       name: this.name,
       email: this.email
     },
-    config.get("jwtPrivateKey")
+    config.get("jwtPrivateKey"),
+    { expiresIn: "7days" }
   );
   return token;
 };

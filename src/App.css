@@ -7,6 +7,15 @@
   text-align: center;
 }
 
+.postHeader {
+  text-align: center;
+}
+
+.modalHead {
+  width: 100%;
+  text-align: center;
+}
+
 hr {
   margin-top: 1rem;
 }

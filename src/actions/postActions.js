@@ -4,9 +4,7 @@ import axios from "axios";
 // with async/await
 export function fetchPosts() {
   return async function(dispatch, getState) {
-    const { data } = await axios.get(
-      "https://jsonplaceholder.typicode.com/posts"
-    );
+    const { data } = await axios.get(`/api/posts`);
     dispatch({ type: FETCH_POSTS, payload: data });
     console.log(getState());
   };
@@ -14,10 +12,7 @@ export function fetchPosts() {
 
 export function createPost(postData) {
   return async function(dispatch) {
-    const { data: post } = await axios.post(
-      `https://jsonplaceholder.typicode.com/posts`,
-      postData
-    );
+    const { data: post } = await axios.post(`/api/posts`, postData);
     dispatch({ type: NEW_POST, payload: post });
   };
 }
