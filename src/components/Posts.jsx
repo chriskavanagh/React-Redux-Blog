@@ -12,13 +12,6 @@ class Posts extends Component {
     };
   } */
 
-  /* async componentDidMount() {
-    const { data } = await axios.get(
-      "https://jsonplaceholder.typicode.com/posts"
-    );
-    this.setState({ posts: data });
-  } */
-
   componentDidMount() {
     this.props.fetchPosts();
   }
@@ -56,8 +49,8 @@ class Posts extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts.items,
-  newPost: state.posts.item
+  posts: state.posts.posts,
+  newPost: state.posts.post
 });
 
 export default connect(

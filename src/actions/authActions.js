@@ -23,6 +23,38 @@ export function loadUser() {
       dispatch(
         returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
       );
+      dispatch({ type: AUTH_ERROR });
+    }
+  };
+}
+
+// register user
+export function register({ name, email, password }) {
+  return async function(dispatch) {
+    const body = { name, email, password };
+    try {
+      const { data } = await axios.post("/api/users", body);
+      dispatch({ type: REGISTER_SUCCESS, payload: data });
+    } catch (err) {
+      dispatch(
+        returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
+      );
+      dispatch({ type: REGISTER_FAIL });
+    }
+  };
+}
+
+// login user
+export function login({ email, password }) {
+  return async function(dispatch) {
+    const body = { email, password };
+    try {
+      const { data } = await axios.post("/api/auth", body);
+      dispatch({ type: LOGIN_SUCCESS, payload: data });
+    } catch (err) {
+      dispatch(
+        returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
+      );
       dispatch({ type: LOGIN_FAIL });
     }
   };

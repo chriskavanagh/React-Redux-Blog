@@ -4,8 +4,8 @@ import axios from "axios";
 // with async/await
 export function fetchPosts() {
   return async function(dispatch, getState) {
-    const { data } = await axios.get(`/api/posts`);
-    dispatch({ type: FETCH_POSTS, payload: data });
+    const { data: posts } = await axios.get(`/api/posts`);
+    dispatch({ type: FETCH_POSTS, payload: posts });
     console.log(getState());
   };
 }
