@@ -37,7 +37,7 @@ export function register({ name, email, password }) {
       dispatch({ type: REGISTER_SUCCESS, payload: data });
     } catch (err) {
       dispatch(
-        returnErrors(err.response.data, err.response.status, "LOGIN_FAIL")
+        returnErrors(err.response.data, err.response.status, "REGISTER_FAIL")
       );
       dispatch({ type: REGISTER_FAIL });
     }

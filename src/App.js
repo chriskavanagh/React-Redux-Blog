@@ -1,26 +1,40 @@
-//import React from "react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import "./App.css";
 import store from "./store";
-import { Provider } from "react-redux";
+import { getCurrentUser } from "./services/AuthService";
+//import { Provider } from "react-redux";
 import Posts from "./components/Posts";
-//import store from "./store";
-//import PostForm from "./components/PostForm";
 import AppNavbar from "./components/AppNavbar";
-//import { Container } from "reactstrap";
 import { loadUser } from "./actions/authActions";
+//import jwtDecode from "jwt-decode";
+//import { connect } from "react-redux";
+//import { Container } from "reactstrap";
 //import { Route, Redirect, Switch } from "react-router-dom";
 
-function App() {
-  useEffect(() => store.dispatch(loadUser()));
+function App(props) {
+  const [currentUser, setcurrentUser] = useState("");
+  useEffect(() => {
+    const user = getCurrentUser();
+    setcurrentUser(user);
+  }, []);
+
   return (
-    <Provider store={store}>
-      <AppNavbar />
+    <Fragment>
+      <AppNavbar user={currentUser} />
       <div className="App">
-        <Posts />
+        <Posts user={currentUser} />
       </div>
-    </Provider>
+    </Fragment>
   );
 }
 
+/* const mapStateToProps = state => ({
+  user: state.auth.user,
+  error: state.error
+}); */
+
 export default App;
+/* export default connect(
+  mapStateToProps,
+  null
+)(App); */

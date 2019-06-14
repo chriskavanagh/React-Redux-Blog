@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchPosts } from "../actions/postActions";
-import PostForm from "./PostForm";
+//import PostForm from "./PostForm";
 //import axios from "axios";
 
 class Posts extends Component {
@@ -30,7 +30,8 @@ class Posts extends Component {
   } */
 
   render() {
-    //const { posts } = this.state;
+    //const { user } = this.props.auth;
+    const { user } = this.props;
     const { posts } = this.props;
     const postItems = posts.map(p => (
       <div key={p.id}>
@@ -40,7 +41,7 @@ class Posts extends Component {
     ));
     return (
       <div>
-        <PostForm />
+        <h1 className="postHeader">{user ? `Welcome ${user.name}` : ""}</h1>
         <h1 className="postHeader">Posts</h1>
         {postItems}
       </div>
@@ -51,6 +52,7 @@ class Posts extends Component {
 const mapStateToProps = state => ({
   posts: state.posts.posts,
   newPost: state.posts.post
+  //auth: state.auth
 });
 
 export default connect(

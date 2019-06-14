@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import RegisterModal from "./auth/RegisterModal";
 import Logout from "./auth/Logout";
+import PostForm from "./PostForm";
 import LoginModal from "./auth/LoginModal";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -11,7 +12,6 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   Container
 } from "reactstrap";
 
@@ -31,8 +31,8 @@ class AppNavbar extends Component {
   };
 
   render() {
-    const { isAuthenticated, user } = this.props.auth;
-
+    const { isAuthenticated } = this.props.auth;
+    const { user } = this.props;
     const authLinks = (
       <Fragment>
         <NavItem>
@@ -42,6 +42,9 @@ class AppNavbar extends Component {
         </NavItem>
         <NavItem>
           <Logout />
+        </NavItem>
+        <NavItem>
+          <PostForm user={user} />
         </NavItem>
       </Fragment>
     );

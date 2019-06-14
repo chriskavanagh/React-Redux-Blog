@@ -36,7 +36,7 @@ class LoginModal extends Component {
     if (error !== prevProps.error) {
       // Check for register error
       if (error.id === "LOGIN_FAIL") {
-        this.setState({ msg: error.msg.msg });
+        this.setState({ msg: error.msg });
       } else {
         this.setState({ msg: null });
       }
@@ -64,7 +64,6 @@ class LoginModal extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-
     const { email, password } = this.state;
 
     const user = {

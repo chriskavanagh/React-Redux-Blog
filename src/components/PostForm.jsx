@@ -9,7 +9,8 @@ import {
   ModalBody,
   Form,
   FormGroup,
-  Input
+  Input,
+  NavLink
 } from "reactstrap";
 
 class PostForm extends Component {
@@ -48,18 +49,15 @@ class PostForm extends Component {
   };
 
   render() {
+    const { user } = this.props;
     return (
       <div>
-        <Button
-          color="dark"
-          style={{ marginBottom: "2rem" }}
-          onClick={this.toggle}
-        >
+        <NavLink color="dark" onClick={this.toggle}>
           Add Post
-        </Button>
+        </NavLink>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader className="modalHead" toggle={this.toggle}>
-            Add-Shopping List
+            New Post- {user.name}
           </ModalHeader>
 
           <ModalBody>
